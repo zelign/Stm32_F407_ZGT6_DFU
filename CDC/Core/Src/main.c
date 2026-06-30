@@ -26,7 +26,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 /* USER CODE END Includes */
-
+#include "usbd_cdc_if.h"
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
@@ -94,13 +94,15 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
-
+  char msg[] = "Hello Linux\r\n";
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-
+    CDC_Transmit_FS((uint8_t *)msg, strlen(msg));
+    for (unsigned int i = 0; i < 1000; i++)
+        for (unsigned int j = 0; j < 10000; j++);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
